@@ -11,6 +11,7 @@ import notificationRouter from "./routes/notification.route";
 import analyticsRouter from "./routes/analytics.route";
 import layoutRouter from "./routes/layout.route";
 import { rateLimit } from "express-rate-limit";
+import { redis } from "./utils/redis";
 
 // body parser
 app.use(express.json({ limit: "50mb" }));
@@ -25,6 +26,25 @@ app.use(
     credentials: true,
   })
 );
+
+const testRedisConnection = async () => {
+  try {
+      // Redis'e bir anahtar ayarla
+      await redis.set('test_key', 'test_value');
+      console.log('Anahtar başarıyla ayarlandı');
+
+      // Anahtarı oku
+      const value = await redis.get('test_key');
+      console.log('Anahtar değeri:', value);
+  } catch (error) {
+      console.error('Redis testinde hata:', error);
+  } finally {
+      // Redis bağlantısını kapat
+      redis.disconnect();
+  }
+};
+
+testRedisConnection();
 
 // api requests limit
 const limiter = rateLimit({

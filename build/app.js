@@ -17,6 +17,7 @@ const notification_route_1 = __importDefault(require("./routes/notification.rout
 const analytics_route_1 = __importDefault(require("./routes/analytics.route"));
 const layout_route_1 = __importDefault(require("./routes/layout.route"));
 const express_rate_limit_1 = require("express-rate-limit");
+const redis_1 = require("./utils/redis");
 // body parser
 exports.app.use(express_1.default.json({ limit: "50mb" }));
 // cookie parser
@@ -26,6 +27,24 @@ exports.app.use((0, cors_1.default)({
     origin: ["https://online-course-six.vercel.app"],
     credentials: true,
 }));
+const testRedisConnection = async () => {
+    try {
+        // Redis'e bir anahtar ayarla
+        await redis_1.redis.set('test_key', 'test_value');
+        console.log('Anahtar başarıyla ayarlandı');
+        // Anahtarı oku
+        const value = await redis_1.redis.get('test_key');
+        console.log('Anahtar değeri:', value);
+    }
+    catch (error) {
+        console.error('Redis testinde hata:', error);
+    }
+    finally {
+        // Redis bağlantısını kapat
+        redis_1.redis.disconnect();
+    }
+};
+testRedisConnection();
 // api requests limit
 const limiter = (0, express_rate_limit_1.rateLimit)({
     windowMs: 15 * 60 * 1000,
