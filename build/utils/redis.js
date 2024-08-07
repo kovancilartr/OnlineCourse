@@ -26,31 +26,3 @@ const redisClient = () => {
     throw new Error('Redis connection failed: Problem burda');
 };
 exports.redis = redisClient();
-// Bağlantı başarılı olduğunda
-exports.redis.on('connect', () => {
-    console.log('Redis bağlantısı başarılı!');
-});
-// Hata durumunda
-exports.redis.on('error', (err) => {
-    console.error('Redis bağlantı hatası:', err);
-});
-// Test fonksiyonu
-const testRedisConnection = async () => {
-    try {
-        // Redis'e bir anahtar ayarla
-        await exports.redis.set('test_key', 'test_value');
-        console.log('Anahtar başarıyla ayarlandı');
-        // Anahtarı oku
-        const value = await exports.redis.get('test_key');
-        console.log('Anahtar değeri:', value);
-    }
-    catch (error) {
-        console.error('Redis testinde hata:', error);
-    }
-    finally {
-        // Redis bağlantısını kapat
-        exports.redis.disconnect();
-    }
-};
-// Vercel timeout sorunu nedeniyle async/await kullanmayalım
-testRedisConnection();
