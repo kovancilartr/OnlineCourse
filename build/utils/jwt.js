@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.sendToken = void 0;
 require("dotenv").config();
 const redis_1 = require("./redis");
-const sendToken = async (user, statusCode, res) => {
+const sendToken = (user, statusCode, res) => {
     const accessToken = user.SignAccessToken();
     const refreshToken = user.SignRefreshToken();
     // upload session to redis
