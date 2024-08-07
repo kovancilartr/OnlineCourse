@@ -5,10 +5,5 @@
     ],
     "routes": [
       { "src": "/(.*)", "dest": "build/server.js" }
-    ],
-    "functions": {
-      "v1/api/**/*.js": {
-        "maxDuration": 30
-      }
-    }
+    ]
   }
