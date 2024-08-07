@@ -8,6 +8,6 @@ const redisClient = () => {
         console.log(`Redis bağlantısı kuruldu`);
         return process.env.REDIS_URL;
     }
-    throw new Error('Redis connection failed');
+    throw new Error('Redis connection failed' + "Problem burda");
 };
 exports.redis = new ioredis_1.Redis(redisClient());
