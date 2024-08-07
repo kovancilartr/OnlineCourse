@@ -11,6 +11,7 @@ const getUserById = async (id, res) => {
     const userJson = await redis_1.redis.get(id);
     if (userJson) {
         const user = JSON.parse(userJson);
+        console.log("USER Bilgileri: ", user);
         res.status(201).json({
             success: true,
             user,

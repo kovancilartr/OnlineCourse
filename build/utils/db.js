@@ -9,7 +9,7 @@ const dbUrl = process.env.DB_URL || '';
 const connectDB = async () => {
     try {
         await mongoose_1.default.connect(dbUrl).then((data) => {
-            console.log(`Database connected with ${data.connection.host}`);
+            console.log(`Database bağlantısı kuruldu HOST: ${data.connection.host}`);
         });
     }
     catch (error) {
