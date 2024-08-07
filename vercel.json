@@ -5,6 +5,10 @@
     ],
     "routes": [
       { "src": "/(.*)", "dest": "build/server.js" }
-    ]
-    
+    ],
+    "functions": {
+      "src/index.ts": {
+        "maxDuration": 10
+      }
+    }
   }
