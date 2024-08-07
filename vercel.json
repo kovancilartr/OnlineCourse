@@ -7,8 +7,8 @@
       { "src": "/(.*)", "dest": "build/server.js" }
     ],
     "functions": {
-      "src/index.ts": {
-        "maxDuration": 10
+      "v1/api/**/*.js": {
+        "maxDuration": 30
       }
     }
   }
