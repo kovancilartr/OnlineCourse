@@ -44,10 +44,6 @@ export const sendToken = (user: IUser, statusCode: number, res: Response) => {
     secure: true,
   };
 
-  //Only set secure to true in production
-  if (process.env.NODE_ENV === "production") {
-    accessTokenOptions.secure = true;
-  }
 
   res.cookie("access_token", accessToken, accessTokenOptions);
   res.cookie("refresh_token", refreshToken, refreshTokenOptions);
