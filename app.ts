@@ -27,24 +27,6 @@ app.use(
   })
 );
 
-const testRedisConnection = async () => {
-  try {
-      // Redis'e bir anahtar ayarla
-      await redis.set('test_key', 'test_value');
-      console.log('Anahtar başarıyla ayarlandı');
-
-      // Anahtarı oku
-      const value = await redis.get('test_key');
-      console.log('Anahtar değeri:', value);
-  } catch (error) {
-      console.error('Redis testinde hata:', error);
-  } finally {
-      // Redis bağlantısını kapat
-      redis.disconnect();
-  }
-};
-
-testRedisConnection();
 
 // api requests limit
 const limiter = rateLimit({
